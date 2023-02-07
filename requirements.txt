@@ -1,0 +1,9 @@
+# All required dependencies for the application can be specified here.
+# The version for each dependency should always be specified.
+# The dependencies below are used in the Pipple logging, make sure these are updated to the latest version.
+
+concurrent-log-handler==0.9.20
+email-validator==1.3.0
+logstash_async_http
+pyaml==21.10.1
+python-logstash-async==2.5.0

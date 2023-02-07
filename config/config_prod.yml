@@ -1,0 +1,71 @@
+# This file contains configuration details for the production environment
+
+logging:
+    version: 1
+    disable_existing_loggers: False
+    formatters:
+        simple:
+            format: "%(asctime)s - %(name)s - %(thread)d - %(levelname)s - %(message)s"
+
+        logstash_formatter:
+            (): logstash_async.formatter.LogstashFormatter
+            message_type: python-logstash
+            fqdn: false
+            extra_prefix: py
+            extra:
+                application: {APPLICATION_NAME}  # Change this name to your application name
+                env: prod
+
+    handlers:
+        console:
+            class: logging.StreamHandler
+            level: DEBUG
+            formatter: simple
+            stream: ext://sys.stdout
+
+        info_file_handler:
+            class: concurrent_log_handler.ConcurrentRotatingFileHandler
+            level: INFO
+            formatter: simple
+            filename: logs/app_info.log
+            maxBytes: 10485760 # 10MB
+            backupCount: 20
+            encoding: utf8
+
+        error_file_handler:
+            class: concurrent_log_handler.ConcurrentRotatingFileHandler
+            level: ERROR
+            formatter: simple
+            filename: logs/app_error.log
+            maxBytes: 10485760 # 10MB
+            backupCount: 20
+            encoding: utf8
+
+        logstash_handler:
+            class: logstash_async.handler.AsynchronousLogstashHandler
+            enable: True
+            host: logging2.pipple.nl
+            port: 443
+            ssl_enable: true
+            ssl_verify: true
+            transport: logstash_async_http.transport.HttpTransport
+            level: DEBUG
+            database_path: ''
+            formatter: logstash_formatter
+            ecs_compatible: true
+
+    loggers:
+            requests:
+                level: INFO
+            elasticsearch:
+                level: INFO
+            urllib3:
+                level: INFO
+            matplotlib:
+                level: INFO
+            multipart.multipart:
+                level: INFO
+
+    root:
+        level: DEBUG
+        handlers: [console, info_file_handler, error_file_handler, logstash_handler]

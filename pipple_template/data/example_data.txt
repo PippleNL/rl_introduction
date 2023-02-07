@@ -1,0 +1,3 @@
+Here you can put all (temporary) data that is used in the application.
+All parameters and other configuration details should be stored in the config files.
+The files in this directory should not be committed to git.

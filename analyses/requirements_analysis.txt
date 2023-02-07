@@ -1,0 +1,2 @@
+If the analyses require additional dependencies, a seperate environment can be created with this file.
+All dependencies that are used in the analyses, including the version, should be specified in this file.
