@@ -1,15 +1,11 @@
-# Pipple template
-This template can be used for Pipple projects.
-
-The README of a repository should always contain the following information.
+# RL Introduction
 
 ## Description of the application
-Here you can write:
-  * What the application does
-  * Why the application is created
-  * For whom the application is created
+The application provides a notebook with a simple introduction to Reinforcement Learning.
+The notebook can be used as part of a lecture or as a self-study.
+
+Notebook location: `analyses/notebooks/rl_intro_notebook.ipynb`
   
 ## Usage of the application
-Here you can write:
-  * How to install and run the project
-  * How to use the project
+To enable running the notebook, you need to install the required packages, contained in the `requirements.txt` file.
+The notebook is created with Python version 3.11.0.
